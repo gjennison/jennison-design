@@ -101,6 +101,14 @@ body{
     border-radius: 50%;
 }
 
+#click-content{
+    transition: opacity 1.5s;
+}
+
+#click-content:hover{
+    opacity: 0.5;
+}
+
 #about .title, #about .subtitle{
     font-size: 1.1em;
     color: white;
@@ -110,10 +118,20 @@ body{
     font-size: 3em;
 }
 
+#click-for-video{
+    opacity: 0;
+    transition: opacity 1s;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 
 /* PORTFOLIO */
 
 #portfolio{
+    margin: auto;
     padding: 5%;
     background: transparent;
 }
@@ -166,6 +184,11 @@ body{
     font-size: 1.5em;
 }
 
+#solutions article{
+    width: 60%;
+    margin: auto;
+}
+
 /* CONTACT */
 
 #contact{
@@ -208,15 +231,7 @@ body{
 
 /* IMG */
 
-#click-for-video{
-    display: none;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-video{
+.modal-content{
     margin-top: 20%;
 }
 

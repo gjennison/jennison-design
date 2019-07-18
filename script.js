@@ -1,21 +1,3 @@
-
-
-
-// var coll = document.getElementsByClassName("collapsible");
-// var i;
-
-// for (i = 0; i < coll.length; i++) {
-// coll[i].addEventListener("click", function() {
-//   this.classList.toggle("active");
-//   var content = this.nextElementSibling;
-//   if (content.style.display === "block") {
-//     content.style.display = "none";
-//   } else {
-//     content.style.display = "block";
-//   }
-// });
-// }
-
 var app = new Vue({
   el: "#app",
   data:{
@@ -24,9 +6,13 @@ var app = new Vue({
     portfolio: false,
     solutions: false,
     contact: false,
+    isBurgerActive: false,
+    isActive: false,
   },
 
   methods:{
+
+    // NAV
     changePage: function(page){
       if(page === 'home'){
         this.homepage = true
@@ -63,30 +49,59 @@ var app = new Vue({
         this.solutions = false
         this.contact = true
       }
-    }
-  },
+    },
 
-  mounted: function(){
-    // NAVBAR BURGER
-    document.addEventListener('DOMContentLoaded', () => {
+    toggleNav: function(event){
       const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
     
       if ($navbarBurgers.length > 0) {
         $navbarBurgers.forEach( el => {
-          el.addEventListener('click', () => {
-    
             const target = el.dataset.target;
             const $target = document.getElementById(target);
     
             el.classList.toggle('is-active');
             $target.classList.toggle('is-active');
-    
-          });
         });
       }
-    });
+    },
 
+    outsideClick: function(event){
+      console.log($(event.target).classList)
+      if($(event.target).id !== 'navbarExample'){
+        const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+    
+        if ($navbarBurgers.length > 0) {
+          $navbarBurgers.forEach( el => {
+              const target = el.dataset.target;
+              const $target = document.getElementById(target);
+      
+              el.classList.toggle('is-active');
+              $target.classList.toggle('is-active');
+          });
+        }
+      }
+    },
 
+    // ABOUT
+    aboutEnter: function(){
+      document.getElementById("click-for-video").style = "opacity: 1";
+    },
+
+    aboutLeave: function(){
+      document.getElementById('click-for-video').style = "opacity: 0";
+    },
+
+    toggleModal: function(){
+      document.getElementsByClassName('modal')[0].classList.toggle('is-active');
+    },
+
+    toggleBG: function(){
+      document.getElementsByClassName('modal')[0].classList.toggle('is-active')
+      document.getElementsByTagName('video')[0].pause()
+    }
+  },
+
+  mounted: function(){
     // PARTICLES JS
     particlesJS.load('particles-js', 'particles.json', function() {
       console.log('callback - particles.js config loaded');
@@ -94,7 +109,10 @@ var app = new Vue({
 
 
     // CHART
-    ctx = document.getElementById("myChart");
+    {
+    var ctx = document.getElementById("myChart");
+
+    console.log(ctx)
 
     if(document.documentElement.clientWidth < 560){
     ctx.height = 300;
@@ -130,6 +148,7 @@ var app = new Vue({
       }
     }
     });
+    }
 
     // TYPED
     var typed = new Typed('#typed',{
@@ -139,7 +158,6 @@ var app = new Vue({
       loop: true,
       showCursor: true
     });
-    
   }
 
 });

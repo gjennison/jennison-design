@@ -4,26 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Auckland Web Solutions</title>
+    <title>Jennison Design</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="shortcut icon" href="imgs/logo.png">
     <link rel="stylesheet" href="node_modules/bulma/css/bulma.min.css">
     <link rel="stylesheet" href="sass/style.css">
-    <link type="text/css" rel="stylesheet" href="t-scroll/public/theme/css/t-scroll.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </head>
 <body>
 
-    <div id="app">
+    <div id="app" >
         <!-- NAVBAR -->
-        <nav class="navbar is-primary is-fixed-top" role="navigation" aria-label="main navigation">
+        <nav class="navbar is-primary is-fixed-top" id="nav" role="navigation" aria-label="main navigation">
             <div class="container">
                 <div class="navbar-brand">
                     <a class="navbar-item" @click="changePage('home')">
                         Home
                     </a>
-                    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarExample">
+                    <a @click="toggleNav" role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarExample">
                         <span aria-hidden="true"></span>
                         <span aria-hidden="true"></span>
                         <span aria-hidden="true"></span>
@@ -50,7 +49,7 @@
         </nav>
     
         <!-- HERO -->
-        <section class="hero is-fullheight-with-navbar" id="home">
+        <section @click="outsideClick" class="hero is-fullheight-with-navbar" id="home">
             <!-- HOMEPAGE -->
             <div id="homepage" v-show="homepage">
                 <div class="container">
@@ -62,18 +61,19 @@
             <!-- ABOUT ME -->
             <div id="about" v-show="about">
                 <div class="columns is-8 is-variable is-vcentered">
-                    <div class="column is-one-third">
+                    <div class="column is-one-third" @mouseover="aboutEnter" @mouseleave="aboutLeave" >
                         <figure class="image">
-                            <img class="image circle-img" src="imgs/me.jpg" alt="" id="me-img">
-                            <p id="click-for-video">Click here for a Video</p>
+                            <div id="click-content">
+                                <img @click="toggleModal" class="image circle-img" src="imgs/me.jpg" alt="" id="me-img">
+                                <p @click="toggleModal" id="click-for-video">Click here for a Video</p>
+                            </div>
                             <div class="modal">
-                                <div class="modal-background"></div>
+                                <div class="modal-background" @click="toggleBG"></div>
                                 <div class="modal-content">
                                     <video src="video.webm" controls id="vid">
                                         Your browser does not support the video tag
                                     </video>
                                 </div>
-                                <button class="modal-close" aria-label="close"></button>
                             </div>
                         </figure>
                     </div>
@@ -164,10 +164,6 @@
     <script src="typed/lib/typed.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
     <script src="particles.js"></script>
-    <script
-  src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
     <script src="node_modules/vue/dist/vue.min.js"></script>
     <script src="script.js"></script>
 </body>
