@@ -8,10 +8,6 @@ body{
     text-align: center;
 }
 
-#gj{
-    padding-left: 15px;
-}
-
 /* NAVBAR */
 
 .navbar{
@@ -27,7 +23,6 @@ body{
 
 .hero{
     clip-path: ellipse(150% 100% at 50% 0);
-
     background: linear-gradient(-45deg, #D37147, rgb(48,103,105), rgb(52,98, 136), rgb(117, 187, 63));
     background-size: 200% 200%;
     -webkit-animation: Gradient 8s ease infinite;
@@ -69,66 +64,71 @@ body{
     }
 }
 
-.hero .title, .hero .subtitle{
+/* HOMEPAGE */
+
+#homepage{
+    margin: auto;
+    width: 100%;
+    height: 100%;
+}
+
+#myChart{
+    width: 100%;
+}
+
+#homepage .title, #homepage .subtitle{
     color: white;
 }
 
-.hero-body{
+#homepage .hero-body{
     text-align: center;
 }
 
-/* HOVER ON ARTICLES */
+/* ABOUT */
 
-#main article{
-    box-shadow: none;
-    transition: box-shadow 0.8s;
-}
-#main article:hover{
-    box-shadow: 0px 0px 5px 1px rgb(117, 187, 63);
-}
-
-/* COLUMN */
-
-.column img{
+#about{
+    background: transparent;
+    margin-top: auto;
+    margin-bottom: auto;
     padding: 5%;
-    padding-top: 6%;
+    padding-left: 10%;
+    padding-right: 10%;
+    font-size: 1.3em;
+    color: white;
 }
 
-.message.is-primary .message-body{
-    border-left: 0px;
-}
-
-/* CARD */
-
-#cards{
-    justify-content: space-evenly;
-}
-
-/* IMG */
-
-.circle-img{
-    border-radius: 0%;
-    transition: all 1s;
-}
-
-.meet-hover{
+#about img{
     border-radius: 50%;
-    opacity: 0.5;
 }
 
-#click-for-video{
-    display: none;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+#about .title, #about .subtitle{
+    font-size: 1.1em;
+    color: white;
 }
 
-video{
-    margin-top: 20%;
+#about .title{
+    font-size: 3em;
 }
+
 
 /* PORTFOLIO */
+
+#portfolio{
+    padding: 5%;
+    background: transparent;
+}
+
+#portfolio .title{
+    color: white;
+}
+
+#portfolio a, #portfolio img{
+    width: 60%;
+}
+
+#portfolio p{
+    color: white;
+}
 
 #veda-link{
     transition: all 1s;
@@ -138,11 +138,17 @@ video{
     box-shadow: 0px 0px 5px 1px rgb(117, 187, 63);
 }
 
+
 /* SOLUTIONS */
 
 #solutions{
-    background-color: #8A4D76;
-    
+    margin-top: auto;
+    margin-bottom: auto;
+    background: transparent;
+    padding: 5%;
+}
+
+#solutions{
     color: white;
 }
 
@@ -162,11 +168,60 @@ video{
 
 /* CONTACT */
 
+#contact{
+    margin-top: auto;
+    margin-bottom: auto;
+    padding: 5%;
+    padding-bottom: 10%;
+    color: white;
+}
+
+#contact .title, #contact .subtitle{
+    color: white;
+}
+
 #contact .subtitle{
     padding-top: 10px;
 }
 
 
+/* HOVER ON ARTICLES */
+
+/* #main article{
+    box-shadow: none;
+    transition: box-shadow 0.8s;
+}
+#main article:hover{
+    box-shadow: 0px 0px 5px 1px rgb(117, 187, 63);
+} */
+
+/* COLUMN */
+
+.column img{
+    padding: 5%;
+    padding-top: 6%;
+}
+
+.message.is-primary .message-body{
+    border-left: 0px;
+}
+
+/* IMG */
+
+#click-for-video{
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+video{
+    margin-top: 20%;
+}
+
+/* PARTICLES */
+
 #particles-js{
-    position:absolute;top:0;left:0;width:100%;height:100%;z-index:1
+    position:absolute;top:0;left:0;width:100%;height:100%;z-index:-1;
 }
