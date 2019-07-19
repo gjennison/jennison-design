@@ -40,6 +40,9 @@
                         <a class="navbar-item" @click="changePage('solutions')">
                             solutions
                         </a>
+                        <a class="navbar-item" @click="changePage('projects')">
+                            projects
+                        </a>
                         <a class="navbar-item" @click="changePage('contact')">
                             contact
                         </a>
@@ -53,8 +56,8 @@
             <!-- HOMEPAGE -->
             <div id="homepage" v-show="homepage">
                 <div class="container">
-                    <h2 class="title">Auckland Based</h2>
-                    <canvas id="myChart"></canvas>
+                    <h1 class="title">Auckland Based</h1>
+                    <chart></chart>
                 </div>
             </div>
             
@@ -89,10 +92,10 @@
                                 <p>Meditator</p>
                                 <p>Tech nerd</p>
                             </div>
-                            <span class="subtitle" id="typed"></span>
+                            <typed></typed>
                         </h3>
                         <p>
-                                Hi, I'm George and I'm a highly passionate Web Designer and I love making my clients happy. I aim to treat everyone with the individuality and respect they deserve. I approach my clients with a sense of warmth and give personalised services. Your success is my success. If you're happy, I'm happy 
+                            Hi, I'm George and I'm a highly passionate Web Designer and I love making my clients happy. I aim to treat everyone with the individuality and respect they deserve. I approach my clients with a sense of warmth and give personalised services. Your success is my success. If you're happy, I'm happy 
                         </p>
                     </div>
                     
@@ -117,7 +120,6 @@
                 </h1>
                 <p>Our services take you from start to finish in developing an online prescence. We'll want to get to know you and your business in order to develop tailor made web solutions.</p>
                 <p ><br></p>
-                <!-- <br> -->
                 <div class="columns is-mobile is-multiline">
                     <div class="column is-half-mobile is-one-third-tablet">
                         <h3 class="title">Professional Photos <br> <i class="fas fa-check"></i></h3>
@@ -138,13 +140,119 @@
                         <h3 class="title">Ongoing support<br>  <i class="fas fa-check"></i></h3>
                     </div>
                 </div>
-                <!-- <br> -->
+                <br>
                 <article class="message is-success">
                         <div class="message-body">
                             Prices start at $200
                         </div>
                 </article>
                 <br>
+            </div>
+
+            <!-- PROJECTS -->
+            <div id="projects" v-show="projects">
+                <!-- <h1 class="title"></h1> -->
+
+                <div class="container">
+                    <!-- PROJECT NAV -->
+                    <div id="project-items">
+                        <h1 id='navGallery' class="title" @click="changeProject('gallery')">Gallery</h1>
+                        <h1 id='navTodo' class="title" @click="changeProject('todo')">Todo list</h1>
+                        <h1 id='navSearch' class="title" @click="changeProject('search')">Search</h1>
+                    </div>
+
+                    <!-- GALLERY -->
+                    <div id="gallery" v-show="galleryProject">
+        
+                        <!-- ICONS -->
+                        <span class="icon is-large">
+                            <div v-bind:class="{activeItem: gallery}" id="icon-gallery" @click="gallery = true">
+                                <i @click="gallery = !gallery" class="fas fa-3x fa-images"></i>
+                            </div>
+                            <div v-bind:class="{activeItem: !gallery}" id="icon-list" @click="gallery = false">
+                                <i class="fas fa-3x fa-list"></i>
+                            </div>
+                        </span>
+        
+                        <br>
+                        <br>
+    
+                        <!-- GALLERY -->
+                        <transition name="fade">
+                            <div v-show="gallery" class="gallery-view">
+                                <div class="columns is-multiline">
+                                    <div v-for="item in galleryItems" class="column is-narrow is-half">
+                                        <img v-bind:src="item[0]" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </transition>
+    
+                        <!-- LIST -->
+                        <transition name="fade">
+                            <div v-show="!gallery" class="gallery-view">
+                                <ul>
+                                    <li v-for="item in galleryItems">
+                                    <div class="columns">
+                                        <div class="column">
+                                            <img v-bind:src="item[0]" alt="">
+                                        </div>
+                                        <div class="column">
+                                            <p>{{item[1]}}</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                </ul>
+                            </div>
+                        </transition>
+                    </div>
+
+                    <!-- TODO -->
+                    <div id="todo" v-show="todoProject">
+                        <input id="todo-input" @keyup.enter="append" v-model="todoQuery" type="text" placeholder="What needs to be done?">
+                        <ul>
+                            <li id="todo-content" v-for="item in todoItems" class="active" @click="completed(item, $event)">
+                                <div id="item-content">
+                                    {{item[0]}}
+                                </div>
+                                <div>
+                                    <button @click="removeTodo(item)">
+                                        &times;
+                                    </button>
+                                </div>
+                            </li>
+    
+                            <li id="key" v-show="todoItems.length > 0">
+                                <div class="active">
+                                    <b>
+                                        active
+                                    </b>
+                                    <br>
+                                    {{totalActive}} / {{todoItems.length}}
+                                </div>
+                                <div class="success">
+                                    <b>
+                                        completed
+                                    </b>
+                                    <br>
+                                    {{totalSuccess}} / {{todoItems.length}}
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- SEARCH -->
+                    <div id="search" v-show="searchProject">
+                        <input type="text" placeholder="search here" v-model="searchQuery">
+                        
+                        <ul>
+                            <br>
+                            <li v-for="item in searchItems" v-show="isInItems(item)">
+                                {{item}}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
             
             <!-- CONTACT -->
@@ -156,7 +264,7 @@
                 <p><i class="fas fa-envelope"></i>&nbsp; georjennison@gmail.com</p>
             </div>
             
-            <div id="particles-js"></div>
+            <particles></particles>
         </section>
     
     </div>

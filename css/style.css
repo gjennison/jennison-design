@@ -76,20 +76,15 @@ body{
     width: 100%;
 }
 
-#homepage .title, #homepage .subtitle{
+#homepage .title{
     color: white;
-}
-
-#homepage .hero-body{
-    text-align: center;
 }
 
 /* ABOUT */
 
 #about{
     background: transparent;
-    margin-top: auto;
-    margin-bottom: auto;
+    margin: auto;
     padding: 5%;
     padding-left: 10%;
     padding-right: 10%;
@@ -127,6 +122,14 @@ body{
     transform: translate(-50%, -50%);
 }
 
+.column img{
+    padding: 5%;
+    padding-top: 6%;
+}
+
+.modal-content{
+    margin-top: 20%;
+}
 
 /* PORTFOLIO */
 
@@ -134,22 +137,19 @@ body{
     margin: auto;
     padding: 5%;
     background: transparent;
+    color: white;
 }
 
 #portfolio .title{
     color: white;
 }
 
-#portfolio a, #portfolio img{
+#portfolio img, #portfolio a{
     width: 60%;
 }
 
-#portfolio p{
-    color: white;
-}
-
 #veda-link{
-    transition: all 1s;
+    transition: box-shadow 1s;
 }
 
 #veda-link:hover{
@@ -179,14 +179,146 @@ body{
     padding-top: 30px;
 }
 
-#solutions .message-body{
-    margin-top: 50px;
+#solutions article{
     font-size: 1.5em;
+    display: inline-block;
+    margin: auto;
 }
 
-#solutions article{
-    width: 60%;
+/* PROJECTS */
+
+@media (min-width: 768px){
+    #projects{
+        margin-top: 4%;
+    }
+}
+
+@media (max-width: 768px){
+    #projects{
+        margin-top: 7%;
+    }
+}
+
+@media (max-width: 600px){
+    #projects{
+        margin-top: 10%;
+    }
+}
+
+@media (max-width: 500px){
+    #projects{
+        margin-top: 12%;
+    }
+}
+
+#projects .container{
+    height: 80%;
+}
+
+#projects .title{
+    color: white;
+    transition: color 0.8s;
+}
+
+#project-items{
+    display: flex;
+    justify-content: space-evenly
+}
+
+/* GALLERY */
+
+#gallery img{
+    width: 100%;
+    height: 100%;
+}
+
+#gallery{
+    background: transparent;
+    color: white;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 450%;
+    width: 80%;
     margin: auto;
+    position: relative;
+}
+
+#gallery p{
+    padding-top: 5%;
+}
+
+#gallery svg{
+    padding: 10px;
+    transition: color 0.8s;
+}
+
+#gallery svg:hover, .activeItem{
+    color: rgb(255,210,77);
+}
+.gallery-view{
+    position: absolute;
+    left: 0px;
+    background: transparent;
+}
+
+.fade-enter-active, .fade-leave-active{
+    transition: opacity .5s;
+}
+
+.fade-enter, .fade-leave-to{
+    opacity: 0;
+}
+
+/* TODO */
+
+.active{
+    background: rgba(255,210,77, 0.9);
+}
+
+.success{
+    background: rgba(50,200,150, 0.9);
+}
+
+#todo{
+    width: 50%;
+    margin: auto;
+}
+
+#todo input{
+    width: 100%;
+    opacity: 0.95;
+}
+
+#key .active, #key .success{
+    display: block;
+    width: 50%;
+}
+
+.active{
+    float: left;
+}
+
+.success{
+    float: right;
+}
+
+#todo-content{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#todo-content #item-content{
+    margin: auto;
+}
+
+#todo-content button{
+    margin-left: auto;
+}
+
+/* SEARCH */
+#search{
+    color: white;
 }
 
 /* CONTACT */
@@ -205,34 +337,6 @@ body{
 
 #contact .subtitle{
     padding-top: 10px;
-}
-
-
-/* HOVER ON ARTICLES */
-
-/* #main article{
-    box-shadow: none;
-    transition: box-shadow 0.8s;
-}
-#main article:hover{
-    box-shadow: 0px 0px 5px 1px rgb(117, 187, 63);
-} */
-
-/* COLUMN */
-
-.column img{
-    padding: 5%;
-    padding-top: 6%;
-}
-
-.message.is-primary .message-body{
-    border-left: 0px;
-}
-
-/* IMG */
-
-.modal-content{
-    margin-top: 20%;
 }
 
 /* PARTICLES */
