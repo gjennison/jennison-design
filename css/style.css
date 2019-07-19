@@ -189,26 +189,30 @@ body{
 
 @media (min-width: 768px){
     #projects{
-        margin-top: 4%;
+        padding-top: 4%;
     }
 }
 
 @media (max-width: 768px){
     #projects{
-        margin-top: 7%;
+        padding-top: 7%;
     }
 }
 
 @media (max-width: 600px){
     #projects{
-        margin-top: 10%;
+        padding-top: 10%;
     }
 }
 
 @media (max-width: 500px){
     #projects{
-        margin-top: 12%;
+        padding-top: 12%;
     }
+}
+
+#todo, #search, #gallery{
+    height: 650px;
 }
 
 #projects .container{
@@ -237,7 +241,6 @@ body{
     color: white;
     overflow-y: scroll;
     overflow-x: hidden;
-    height: 500px;
     width: 80%;
     margin: auto;
     position: relative;
