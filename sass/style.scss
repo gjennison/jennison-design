@@ -30,11 +30,12 @@ body{
 .navbar{
     opacity: 0.3;
     transition: opacity 1s;
+
+    &:hover{
+        opacity: 1;
+    }
 }
 
-.navbar:hover{
-    opacity: 1;
-}
 
 /* HERO */
 
@@ -97,9 +98,7 @@ body{
 
 #about{
     margin: auto;
-    padding: 5%;
-    padding-left: 10%;
-    padding-right: 10%;
+    padding: 5% 10% 5% 10%;
     font-size: 1.3em;
 
     img{
@@ -117,10 +116,10 @@ body{
 
 #click-content{
     transition: opacity 1.5s;
-}
 
-#click-content:hover{
-    opacity: 0.5;
+    &:hover{
+        opacity: 0.5;
+    }
 }
 
 #click-for-video{
@@ -154,18 +153,19 @@ body{
 
 #veda-link{
     transition: box-shadow 1s;
-}
 
-#veda-link:hover{
-    box-shadow: 0px 0px 5px 1px rgb(117, 187, 63);
+    &:hover{
+        box-shadow: 0px 0px 5px 1px rgb(117, 187, 63);
+    }
 }
-
 
 /* SOLUTIONS */
 
 #solutions{
-    margin-top: auto;
-    margin-bottom: auto;
+    margin: {
+        top: auto;
+        bottom: auto;
+    }
     padding: 5%;
 
     .column .title{
@@ -227,8 +227,10 @@ body{
 /* GALLERY */
 
 #gallery{
-    overflow-y: scroll;
-    overflow-x: hidden;
+    overflow: {
+        y: scroll;
+        x: hidden;
+    }
     width: 80%;
     margin: auto;
     position: relative;
@@ -254,7 +256,6 @@ body{
 .gallery-view{
     position: absolute;
     left: 0px;
-    background: transparent;
 }
 
 .fade-enter-active, .fade-leave-active{
@@ -317,8 +318,10 @@ body{
 /* CONTACT */
 
 #contact{
-    margin-top: auto;
-    margin-bottom: auto;
+    margin: {
+        top: auto;
+        bottom: auto;
+    }
     padding: 5%;
     padding-bottom: 10%;
 

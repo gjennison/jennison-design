@@ -68,9 +68,7 @@ body {
 /* ABOUT */
 #about {
   margin: auto;
-  padding: 5%;
-  padding-left: 10%;
-  padding-right: 10%;
+  padding: 5% 10% 5% 10%;
   font-size: 1.3em;
 }
 
@@ -233,7 +231,6 @@ body {
 .gallery-view {
   position: absolute;
   left: 0px;
-  background: transparent;
 }
 
 .fade-enter-active, .fade-leave-active {
