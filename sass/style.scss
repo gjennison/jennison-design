@@ -4,26 +4,336 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
 
 // Set your brand colors
-$purple: #8A4D76;
-$pink: #FA7C91;
-$brown: #757763;
-$beige-light: #D0D1CD;
-$beige-lighter: #EFF0EB;
+$amber: rgb(255,210,77);
+$green: rgb(50, 200, 150);
 
 // Update Bulma's global variables
-$family-sans-serif: "Nunito", sans-serif;
-$grey-dark: $brown;
-$grey-light: $beige-light;
 $primary: rgb(48,103,105);
-$link: $pink;
-$widescreen-enabled: false;
-$fullhd-enabled: false;
 
 // Update some of Bulma's component variables
-$body-background-color: $beige-lighter;
-$control-border-width: 2px;
-$input-border-color: transparent;
-$input-shadow: none;
+$title-color: white;
+$subtitle-color: white;
+$body-color: white;
+
+/* BODY */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body{
+    text-align: center;
+}
+
+/* NAVBAR */
+
+.navbar{
+    opacity: 0.3;
+    transition: opacity 1s;
+}
+
+.navbar:hover{
+    opacity: 1;
+}
+
+/* HERO */
+
+.hero{
+    clip-path: ellipse(150% 100% at 50% 0);
+    background: linear-gradient(-45deg, #D37147, rgb(48,103,105), rgb(52,98, 136), rgb(117, 187, 63));
+    background-size: 200% 200%;
+    -webkit-animation: Gradient 8s ease infinite;
+    -mos-animation: Gradient 8s ease infinite;
+    animation: Gradient 8s ease infinite;
+}
+
+@-webkit-keyframes Gradient{
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+@-moz-keyframes Gradient{
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+@keyframes Gradient{
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* HOMEPAGE */
+
+#homepage{
+    margin: auto;
+    width: 100%;
+    height: 100%;
+}
+
+#myChart{
+    width: 100%;
+}
+
+/* ABOUT */
+
+#about{
+    margin: auto;
+    padding: 5%;
+    padding-left: 10%;
+    padding-right: 10%;
+    font-size: 1.3em;
+
+    img{
+        border-radius: 50%;
+    }
+
+    .subtitle{
+        font-size: 1.1em;
+    }
+
+    .title{
+        font-size: 3em;
+    }
+}
+
+#click-content{
+    transition: opacity 1.5s;
+}
+
+#click-content:hover{
+    opacity: 0.5;
+}
+
+#click-for-video{
+    opacity: 0;
+    transition: opacity 1s;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.column img{
+    padding: 5%;
+    padding-top: 6%;
+}
+
+.modal-content{
+    margin-top: 20%;
+}
+
+/* PORTFOLIO */
+
+#portfolio{
+    margin: auto;
+    padding: 5%;
+
+    img, a{
+        width: 60%;
+    }
+}
+
+#veda-link{
+    transition: box-shadow 1s;
+}
+
+#veda-link:hover{
+    box-shadow: 0px 0px 5px 1px rgb(117, 187, 63);
+}
+
+
+/* SOLUTIONS */
+
+#solutions{
+    margin-top: auto;
+    margin-bottom: auto;
+    padding: 5%;
+
+    .column .title{
+        font-size: 1.5em;
+        padding-top: 30px;
+    }
+
+    article{
+        font-size: 1.5em;
+        display: inline-block;
+        margin: auto;
+    }
+}
+
+/* PROJECTS */
+
+@media (min-width: 768px){
+    #projects{
+        padding-top: 4%;
+    }
+}
+
+@media (max-width: 768px){
+    #projects{
+        padding-top: 7%;
+    }
+}
+
+@media (max-width: 600px){
+    #projects{
+        padding-top: 10%;
+    }
+}
+
+@media (max-width: 500px){
+    #projects{
+        padding-top: 12%;
+    }
+}
+
+#todo, #search, #gallery{
+    height: 650px;
+}
+
+#projects{
+    .container{
+        height: 80%;
+    }
+    .title{
+        transition: color 0.8s;
+    }
+}
+
+#project-items{
+    display: flex;
+    justify-content: space-evenly
+}
+
+/* GALLERY */
+
+#gallery{
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 80%;
+    margin: auto;
+    position: relative;
+
+    img{
+        width: 100%;
+        height: 100%;
+    }
+
+    p{
+        padding-top: 5%;
+    }
+
+    svg{
+        padding: 10px;
+        transition: color 0.8s;
+    }
+}
+
+#gallery svg:hover, .activeItem{
+    color: $amber;
+}
+.gallery-view{
+    position: absolute;
+    left: 0px;
+    background: transparent;
+}
+
+.fade-enter-active, .fade-leave-active{
+    transition: opacity .5s;
+}
+
+.fade-enter, .fade-leave-to{
+    opacity: 0;
+}
+
+/* TODO */
+
+.active{
+    background: $amber;
+    opacity: 0.9;
+}
+
+.success{
+    background: $green;
+    opacity: 0.9;
+}
+
+#todo{
+    width: 50%;
+    margin: auto;
+
+    input{
+        width: 100%;
+        opacity: 0.95;
+    }
+}
+
+#key .active, #key .success{
+    display: block;
+    width: 50%;
+}
+
+.active{
+    float: left;
+}
+
+.success{
+    float: right;
+}
+
+#todo-content{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    #item-content{
+        margin: auto;
+    }
+
+    button{
+        margin-left: auto;
+    }
+}
+
+/* CONTACT */
+
+#contact{
+    margin-top: auto;
+    margin-bottom: auto;
+    padding: 5%;
+    padding-bottom: 10%;
+
+    .subtitle{
+        padding-top: 10px;
+    }
+}
+
+/* PARTICLES */
+
+#particles-js{
+    position:absolute;top:0;left:0;width:100%;height:100%;z-index:-1;
+}
+
+
 
 // Import only what you need from Bulma
 @import "../node_modules/bulma/sass/utilities/_all.sass";
