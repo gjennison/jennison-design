@@ -100,7 +100,7 @@ var app = new Vue({
 
     // SKILL BAR
     intervalID: '',
-    increment: 1,
+    increment: 2,
     skillSet: [
         { area: 'HTML5', initLevel: 0, level: 100 , color: '#D37147'},
         { area: 'CSS3', initLevel: 0, level: 100 , color: '#D39847'},
