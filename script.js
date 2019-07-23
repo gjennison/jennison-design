@@ -1,3 +1,19 @@
+const options = {
+  color: '#bffaf3',
+  failedColor: '#874b4b',
+  thickness: '5px',
+  transition: {
+    speed: '0.2s',
+    opacity: '0.6s',
+    termination: 300
+  },
+  autoRevert: true,
+  location: 'top',
+  inverse: false
+}
+
+Vue.use(VueProgressBar, options)
+
 // PARTICLES
 Vue.component('particles', {
   mounted: function(){
@@ -82,6 +98,35 @@ var app = new Vue({
     isBurgerActive: false,
     isActive: false,
 
+    // SKILL BAR
+    intervalID: '',
+    increment: 1,
+    skillSet: [
+        { area: 'HTML5', initLevel: 0, level: 100 , color: '#D37147'},
+        { area: 'CSS3', initLevel: 0, level: 100 , color: '#D39847'},
+        { area: 'JavaScript', initLevel: 0, level: 80 , color: '#346288'},
+        { area: 'SASS', initLevel: 0, level: 90 , color: '#309069'},
+        { area: 'Bootstrap', initLevel: 0, level: 90 , color: '#D37147' },
+        { area: 'Bulma', initLevel: 0, level: 100 , color: '#D39847' },
+        { area: 'GIT', initLevel: 0, level: 100 , color: '#346288' },
+        { area: 'Vue.JS', initLevel: 0, level: 80 , color: '#309069' },
+        { area: 'Communication', initLevel: 0, level: 100 , color: '#D37147'}
+    ],
+
+    // TIMELINE
+
+    timelineData: [
+      { dateLabel: 'Nov 2015', title: 'Started work at Orion Health' },
+      { dateLabel: 'June 2016', title: 'Left Orion' },
+      { dateLabel: 'Nov 2016', title: 'Start traveling and Working' },
+      { dateLabel: 'Feb 2018', title: 'Started Computer Science degree at UoA' },
+      { dateLabel: 'March 2018', title: 'Started Colt Steele\'s course on Web Development' },
+      { dateLabel: 'April 2018', title: 'Developed Websites for The Veda Club and The Mantra lounge' },
+      { dateLabel: 'Nov 2018', title: 'Started Volunteering at Anahata Yoga Retreat' },
+      { dateLabel: 'May 2019', title: 'Left Anahata'},
+      { dateLabel: 'June 2019', title: 'Started taking online courses and freelancing'},
+    ],
+
     // PROJECTS
     projects: [true, false, false],
 
@@ -125,6 +170,14 @@ var app = new Vue({
   },
 
   methods:{
+
+    // SKILL BAR
+
+    getLevelProgress: function(value){
+      this.skillSet.forEach(data => {
+        data.initLevel = Math.min(Math.floor(data.initLevel+value), data.level)
+      })
+    },
 
     // NAV
     changePage: function(page){
@@ -285,7 +338,41 @@ var app = new Vue({
 
   },
 
+  created(){
+    this.$Progress.start()
+    this.$router.beforeEach((to, from, next) => {
+      if (to.meta.progress !== undefined) {
+        let meta = to.meta.progress
+        this.$Progress.parseMeta(meta)
+      }
+      this.$Progress.start()
+      next()
+    })
+    this.$router.afterEach((to, from) => {
+      this.$Progress.finish()
+    })
+  },
+
   mounted: function(){
     document.getElementById("navGallery").style = "color: rgb(255,210,77)";
-  }
+
+    this.$Progress.finish()
+
+    this.intervalID = setInterval(() => {
+      this.getLevelProgress(this.increment)
+    }, 10)
+
+    var swiper = new Swiper('.swiper-container', {
+      slidesPerView: 4,
+      paginationClickable: true,
+      grabCursor: true,
+      paginationClickable: true,
+      nextButton: '.next-slide',
+      prevButton: '.prev-slide',
+    });
+  },
+
+  beforeDestroy: function() {
+		clearInterval(this.intervalID)
+	}  
 });

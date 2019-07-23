@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "@creativebulma/bulma-collapsible": "^1.0.4",
-    "vue": "^2.6.10"
+    "vue": "^2.6.10",
+    "vue-horizontal-timeline": "^0.5.0",
+    "vue-progressbar": "^0.7.5"
   }
 }

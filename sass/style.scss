@@ -15,6 +15,8 @@ $title-color: white;
 $subtitle-color: white;
 $body-color: white;
 
+// $column-gap: 2rem;
+
 /* BODY */
 
 html {
@@ -82,12 +84,61 @@ body{
     }
 }
 
+
 /* HOMEPAGE */
 
 #homepage{
     margin: auto;
     width: 100%;
     height: 100%;
+
+    .container{
+        margin: auto;
+    }
+    /* SKILL BAR */
+    li {
+        margin: .5em .5em .5em;
+        padding: 0;
+        border-radius: 3px;
+        list-style: none;
+        overflow: hidden;
+        width: 30%;
+        div {
+            position: relative;
+            height: 1.4em;
+            background: $green;
+            font-size: 1.5em;
+            label:first-child {
+                position: absolute;
+                left: 8px;
+            }
+            label:last-child {
+                position: absolute;
+                right: 8px;
+            }
+        }
+    }
+}
+@media (max-width: 768px){
+    #homepage li div{
+        font-size: 1.2em;
+    }
+    #homepage{
+        padding-top: 25px;
+        padding-bottom: 50px;
+    }
+}
+
+@media (max-width: 600px){
+    #homepage li{
+        width: 45%;
+    }
+}
+
+@media (max-width: 500px){
+    #homepage li{
+        width: 100%;
+    }
 }
 
 #myChart{
@@ -161,23 +212,71 @@ body{
 
 /* SOLUTIONS */
 
-#solutions{
+#experience{
     margin: {
         top: auto;
         bottom: auto;
     }
     padding: 5%;
+}
 
-    .column .title{
-        font-size: 1.5em;
-        padding-top: 30px;
-    }
-
-    article{
-        font-size: 1.5em;
-        display: inline-block;
-        margin: auto;
-    }
+// TIMELINE
+.swiper-container {
+    .timeline {
+        margin: 50px 0;
+        list-style-type: none;
+        display: flex;
+        padding: 0;
+        text-align: center;
+      }
+      .timeline li {
+        transition: all 200ms ease-in;
+      }
+      .timestamp {
+        width: 200px;
+        margin-bottom: 20px;
+        padding: 0px 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-weight: 100; 
+      }
+      .status {
+        padding: 0px 40px;
+        display: flex;
+        justify-content: center;
+        border-top: 4px solid #3e70ff;
+        position: relative;
+        transition: all 200ms ease-in ;
+      }
+        
+      .status span {
+        font-weight: 600;
+        padding-top: 20px;
+      }
+      .status span:before {
+        content: '';
+        width: 25px;
+        height: 25px;
+        background-color: #e8eeff;
+        border-radius: 25px;
+        border: 4px solid #3e70ff;
+        position: absolute;
+        top: -15px;
+        left: 42%;
+        transition: all 200ms ease-in;
+      }
+    
+    width: 100%;
+    height: 250px;
+    margin: 50px 0;
+    overflow: hidden;
+    padding: 0 20px 30px 20px;
+      .swiper-slide {
+        width: 200px;
+        text-align: center;
+        font-size: 18px;
+      }
 }
 
 /* PROJECTS */

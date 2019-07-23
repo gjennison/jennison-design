@@ -14,6 +14,7 @@
 <body>
 
     <div id="app" >
+        <vue-progress-bar></vue-progress-bar>
         <!-- NAVBAR -->
         <nav class="navbar is-primary is-fixed-top" id="nav" role="navigation" aria-label="main navigation">
             <div class="container">
@@ -37,7 +38,7 @@
                             portfolio
                         </a>
                         <a class="navbar-item" @click="changePage(3)">
-                            solutions
+                            experience
                         </a>
                         <a class="navbar-item" @click="changePage(4)">
                             projects
@@ -55,8 +56,15 @@
             <!-- HOMEPAGE -->
             <div id="homepage" v-show="pages[0]">
                 <div class="container">
-                    <h1 class="title">Auckland Based</h1>
-                    <chart></chart>
+                    <h1 class="title">George's Skills</h1>
+                    <ul class="columns is-mobile is-multiline is-8">
+                        <li v-for="(skill, i) in skillSet" :key="i" class="column is-one-third">
+                            <div :style="{ width: skill.initLevel + '%' , backgroundColor: skill.color}">
+                                <label>{{ skill.area }}</label>
+                                <label>{{ skill.initLevel + '%' }}</label>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
             
@@ -85,7 +93,7 @@
                             <typed></typed>
                         </h3>
                         <p>
-                            Hi, I'm George and I'm a highly passionate Web Designer and I love making my clients happy. I aim to treat everyone with the individuality and respect they deserve. I approach my clients with a sense of warmth and give personalised services. Your success is my success. If you're happy, I'm happy 
+                            Hi, I'm George and I'm a highly passionate Front End Web Developer specialising in the Vue JS framework. I've been a self taught Web developer for many years and I've always loved programming. I live in New Zealand and in my freetime I love going hiking or mountain biking
                         </p>
                     </div>
                     
@@ -96,46 +104,32 @@
             <div id="portfolio" v-show="pages[2]">
                 <h1 class="title">Portfolio</h1>
                 <p>
-                    I developed a simple the website for The Veda Club, a spiritual group
+                    I developed a simple the website for The Veda Club, a spiritual group. <br> I also developed a website for 'The Mantra Lounge', a spiritual center in Hamilton. <br> Unfortunately both of these sites are down at the moment.
                     <br>
                     <br>
                 </p>
                 <a href="http://thevedaclub.nz/"><img src="imgs/veda.png" alt="" id="veda-link"></a>
             </div>
             
-            <!-- SERVICES -->
-            <div id="solutions" v-show="pages[3]">
+            <!-- EXPERIENCE -->
+            <div id="experience" v-show="pages[3]">
                 <h1 class="title">
-                    What we do
+                    Experience
                 </h1>
-                <p>Our services take you from start to finish in developing an online prescence. We'll want to get to know you and your business in order to develop tailor made web solutions.</p>
-                <p ><br></p>
-                <div class="columns is-mobile is-multiline">
-                    <div class="column is-half-mobile is-one-third-tablet">
-                        <h3 class="title">Professional Photos <br> <i class="fas fa-check"></i></h3>
-                    </div>
-                    <div class="column is-half-mobile is-one-third-tablet">
-                        <h3 class="title">Individual website <br> <i class="fas fa-check"></i></h3>
-                    </div>
-                    <div class="column is-half-mobile is-one-third-tablet">
-                        <h3 class="title">Social media <br> <i class="fas fa-check"></i></h3>
-                    </div>
-                    <div class="column is-half-mobile is-one-third-tablet">
-                        <h3 class="title">Online advertising <br> <i class="fas fa-check"></i></h3>
-                    </div>
-                    <div class="column is-half-mobile is-one-third-tablet">
-                        <h3 class="title">Data and analytics <br> <i class="fas fa-check"></i></h3>
-                    </div>
-                    <div class="column is-half-mobile is-one-third-tablet">
-                        <h3 class="title">Ongoing support<br>  <i class="fas fa-check"></i></h3>
-                    </div>
-                </div>
-                <br>
-                <article class="message is-success">
-                        <div class="message-body">
-                            Prices start at $200
+                <div class="swiper-container">
+                        <div class="swiper-wrapper timeline">
+                            <div class="swiper-slide" v-for="item in timelineData">
+                            <div class="timestamp">
+                                <span class="date">{{item.dateLabel}}<span>
+                            </div>
+                            <div class="status">
+                                <span>{{item.title}}</span>
+                            </div>
+                            </div>
                         </div>
-                </article>
+                        <!-- Add Pagination -->
+                        <div class="swiper-pagination"></div>
+                        </div>
                 <br>
             </div>
 
@@ -263,7 +257,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
     <script src="particles.js"></script>
     <script src="node_modules/vue/dist/vue.js"></script>
-    <!-- <script src="node_modules/vue-progressbar/dist/vue-progressbar.js"></script> -->
+    <script src="node_modules/vue-progressbar/dist/vue-progressbar.js"></script>
+    <script src="swiper/dist/js/swiper.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
