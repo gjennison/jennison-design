@@ -105,7 +105,7 @@ var app = new Vue({
         { area: 'HTML5', initLevel: 0, level: 100 , color: '#D37147'},
         { area: 'CSS3', initLevel: 0, level: 100 , color: '#D39847'},
         { area: 'JavaScript', initLevel: 0, level: 80 , color: '#346288'},
-        { area: 'SASS', initLevel: 0, level: 90 , color: '#309069'},
+        { area: 'Sass', initLevel: 0, level: 90 , color: '#309069'},
         { area: 'Bootstrap', initLevel: 0, level: 90 , color: '#D37147' },
         { area: 'Bulma', initLevel: 0, level: 100 , color: '#D39847' },
         { area: 'GIT', initLevel: 0, level: 100 , color: '#346288' },
