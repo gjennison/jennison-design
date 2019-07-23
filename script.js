@@ -76,26 +76,27 @@ var app = new Vue({
     solutions: false,
     projects: false,
     contact: false,
+
+    pages: [true, false, false, false, false, false],
+
     isBurgerActive: false,
     isActive: false,
 
     // PROJECTS
-    galleryProject: true,
-    todoProject: false,
-    searchProject: false,
+    projects: [true, false, false],
 
 
     // GALLERY
     gallery: true,
     galleryItems: [
-        ["assets/1.jpg", "just majestic"],
-        ["assets/2.jpg", "simply stunning"],
-        ["assets/3.jpg", "quite marvelous"],
-        ["assets/4.jpeg", "how pajricious"],
-        ["assets/5.jpeg", "finally something stemming from capriciousness"],
-        ["assets/6.jpg", "it makes me think of vienna"],
-        ["assets/7.jpg", "oh honey get the red wine"],
-        ["assets/8.jpg", "I want to drown in camembere"],
+        ["imgs/1.jpg", "just majestic"],
+        ["imgs/2.jpg", "simply stunning"],
+        ["imgs/3.jpg", "quite marvelous"],
+        ["imgs/4.jpeg", "how pajricious"],
+        ["imgs/5.jpeg", "finally something stemming from capriciousness"],
+        ["imgs/6.jpg", "it makes me think of vienna"],
+        ["imgs/7.jpg", "oh honey get the red wine"],
+        ["imgs/8.jpg", "I want to drown in camembere"],
     ],
 
     // TODO
@@ -127,53 +128,13 @@ var app = new Vue({
 
     // NAV
     changePage: function(page){
-      if(page === 'home'){
-        this.homepage = true
-        this.about = false
-        this.portfolio = false
-        this.solutions = false
-        this.projects = false;
-        this.contact = false
-      }
-      else if (page === 'about'){
-        this.homepage = false
-        this.about = true
-        this.portfolio = false
-        this.solutions = false
-        this.projects = false;
-        this.contact = false
-      }
-      else if (page === 'portfolio'){
-        this.homepage = false
-        this.about = false
-        this.portfolio = true
-        this.solutions = false
-        this.projects = false;
-        this.contact = false
-      }
-      else if (page === 'solutions'){
-        this.homepage = false
-        this.about = false
-        this.portfolio = false
-        this.solutions = true
-        this.projects = false;
-        this.contact = false
-      }
-      else if (page === 'projects'){
-        this.homepage = false
-        this.about = false
-        this.portfolio = false
-        this.solutions = false;
-        this.projects = true;
-        this.contact = false
-      }
-      else{
-        this.homepage = false
-        this.about = false
-        this.portfolio = false
-        this.solutions = false
-        this.projects = false
-        this.contact = true
+      for(i = 0; i < this.pages.length; i++){
+        if(i === page){
+          for(x = 0; x < this.pages.length; x++){
+            this.$set(this.pages, x, false)
+          }
+          this.$set(this.pages, page, true)
+        }
       }
     },
 
@@ -228,43 +189,44 @@ var app = new Vue({
     // PROJECTS
 
     changeProject: function(project, event){
-      if(project === 'gallery'){
-        this.galleryProject = true
-        this.todoProject = false
-        this.searchProject = false
-      }
-      else if(project === 'todo'){
-        this.galleryProject = false
-        this.todoProject = true
-        this.searchProject = false
-      }
-      else{
-        this.galleryProject = false
-        this.todoProject = false
-        this.searchProject = true
-      }
+
+      var amber = "color: rgb(255,210,77)"
+      var white = "color: white"
+
 
       const gallery = document.getElementById('navGallery')
       const todo = document.getElementById('navTodo')
       const search = document.getElementById('navSearch')
 
-      var amber = "color: rgb(255,210,77)"
-      var white = "color: white"
+      for(i = 0; i < this.projects.length; i++){
 
-      if(this.galleryProject)
-        gallery.style = amber
-      else
-        gallery.style = white
+        if(i === project){
+          // PROJECT NAV
+          for(x = 0; x < this.projects.length; x++){
+            this.$set(this.projects, x, false)
+          }
+          this.$set(this.projects, project, true)
 
-      if(this.todoProject)
-        todo.style = amber
-      else
-        todo.style = white
-      
-      if(this.searchProject)
-        search.style = amber
-      else
-        search.style = white
+          // COLOUR CHANGE
+          if(i === 0){
+            gallery.style = amber
+            todo.style = white
+            search.style = white
+          }
+
+          else if(i === 1){
+            gallery.style = white
+            todo.style = amber
+            search.style = white
+          }
+
+          else{
+            gallery.style = white
+            todo.style = white
+            search.style = amber
+          }
+        }
+      }
     },
 
     // TODO

@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Jennison Design</title>
-    <!-- <link rel="stylesheet" href="css/style.css"> -->
     <link rel="shortcut icon" href="imgs/logo.png">
     <link rel="stylesheet" href="node_modules/bulma/css/bulma.min.css">
     <link rel="stylesheet" href="sass/style.css">
@@ -19,7 +18,7 @@
         <nav class="navbar is-primary is-fixed-top" id="nav" role="navigation" aria-label="main navigation">
             <div class="container">
                 <div class="navbar-brand">
-                    <a class="navbar-item" @click="changePage('home')">
+                    <a class="navbar-item" @click="changePage(0)">
                         Home
                     </a>
                     <a @click="toggleNav" role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarExample">
@@ -31,30 +30,30 @@
     
                 <div class="navbar-menu" id="navbarExample">
                     <div class="navbar-end">
-                        <a class="navbar-item" @click="changePage('about')">
+                        <a class="navbar-item" @click="changePage(1)">
                             about
                         </a>
-                        <a class="navbar-item" @click="changePage('portfolio')">
+                        <a class="navbar-item" @click="changePage(2)">
                             portfolio
                         </a>
-                        <a class="navbar-item" @click="changePage('solutions')">
+                        <a class="navbar-item" @click="changePage(3)">
                             solutions
                         </a>
-                        <a class="navbar-item" @click="changePage('projects')">
+                        <a class="navbar-item" @click="changePage(4)">
                             projects
                         </a>
-                        <a class="navbar-item" @click="changePage('contact')">
+                        <a class="navbar-item" @click="changePage(5)">
                             contact
                         </a>
                     </div>
                 </div>
             </div>
         </nav>
-    
+
         <!-- HERO -->
         <section @click="outsideClick" class="hero is-fullheight-with-navbar" id="home">
             <!-- HOMEPAGE -->
-            <div id="homepage" v-show="homepage">
+            <div id="homepage" v-show="pages[0]">
                 <div class="container">
                     <h1 class="title">Auckland Based</h1>
                     <chart></chart>
@@ -62,21 +61,12 @@
             </div>
             
             <!-- ABOUT ME -->
-            <div id="about" v-show="about">
+            <div id="about" v-show="pages[1]">
                 <div class="columns is-8 is-variable is-vcentered">
                     <div class="column is-one-third" @mouseover="aboutEnter" @mouseleave="aboutLeave" >
                         <figure class="image">
                             <div id="click-content">
-                                <img @click="toggleModal" class="image circle-img" src="imgs/me.jpg" alt="" id="me-img">
-                                <p @click="toggleModal" id="click-for-video">Click here for a Video</p>
-                            </div>
-                            <div class="modal">
-                                <div class="modal-background" @click="toggleBG"></div>
-                                <div class="modal-content">
-                                    <video src="video.webm" controls id="vid">
-                                        Your browser does not support the video tag
-                                    </video>
-                                </div>
+                                <img class="image circle-img" src="imgs/me.jpg" alt="" id="me-img">
                             </div>
                         </figure>
                     </div>
@@ -103,7 +93,7 @@
             </div>
             
             <!-- PORTFOLIO !-->
-            <div id="portfolio" v-show="portfolio">
+            <div id="portfolio" v-show="pages[2]">
                 <h1 class="title">Portfolio</h1>
                 <p>
                     I developed a simple the website for The Veda Club, a spiritual group
@@ -114,7 +104,7 @@
             </div>
             
             <!-- SERVICES -->
-            <div id="solutions" v-show="solutions">
+            <div id="solutions" v-show="pages[3]">
                 <h1 class="title">
                     What we do
                 </h1>
@@ -150,19 +140,19 @@
             </div>
 
             <!-- PROJECTS -->
-            <div id="projects" v-show="projects">
+            <div id="projects" v-show="pages[4]">
                 <!-- <h1 class="title"></h1> -->
 
                 <div class="container">
                     <!-- PROJECT NAV -->
                     <div id="project-items">
-                        <h1 id='navGallery' class="title" @click="changeProject('gallery')">Gallery</h1>
-                        <h1 id='navTodo' class="title" @click="changeProject('todo')">Todo list</h1>
-                        <h1 id='navSearch' class="title" @click="changeProject('search')">Search</h1>
+                        <h1 id='navGallery' class="title" @click="changeProject(0)">Gallery</h1>
+                        <h1 id='navTodo' class="title" @click="changeProject(1)">Todo list</h1>
+                        <h1 id='navSearch' class="title" @click="changeProject(2)">Search</h1>
                     </div>
 
                     <!-- GALLERY -->
-                    <div id="gallery" v-show="galleryProject">
+                    <div id="gallery" v-show="projects[0]">
         
                         <!-- ICONS -->
                         <span class="icon is-large">
@@ -208,7 +198,7 @@
                     </div>
 
                     <!-- TODO -->
-                    <div id="todo" v-show="todoProject">
+                    <div id="todo" v-show="projects[1]">
                         <input id="todo-input" @keyup.enter="append" v-model="todoQuery" type="text" placeholder="What needs to be done?">
                         <ul>
                             <li id="todo-content" v-for="item in todoItems" class="active" @click="completed(item, $event)">
@@ -242,7 +232,7 @@
                     </div>
 
                     <!-- SEARCH -->
-                    <div id="search" v-show="searchProject">
+                    <div id="search" v-show="projects[2]">
                         <input type="text" placeholder="search here" v-model="searchQuery">
                         
                         <ul>
@@ -256,7 +246,7 @@
             </div>
             
             <!-- CONTACT -->
-            <div id="contact" v-show="contact">
+            <div id="contact" v-show="pages[5]">
                 <p class="title">Let's get in touch</p>
                 <p class="subtitle">Give me a call or flick me an email for any and all inquiries</p>
                 <p><i class="fas fa-map-marker"></i>&nbsp; Remuera, Auckland</p>
@@ -272,7 +262,8 @@
     <script src="typed/lib/typed.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
     <script src="particles.js"></script>
-    <script src="node_modules/vue/dist/vue.min.js"></script>
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <!-- <script src="node_modules/vue-progressbar/dist/vue-progressbar.js"></script> -->
     <script src="script.js"></script>
 </body>
 </html>
